@@ -1,4 +1,5 @@
 #!/bin/sh
 set -ex
 
-echo "Test"
+g++ --version
+g++ test.cpp -o test
