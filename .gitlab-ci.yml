@@ -1,0 +1,22 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - apk --no-cache add make
+
+stages:
+  - build
+
+variables:
+  GIT_COMMIT: "${CI_COMMIT_SHA}"
+
+build:
+  stage: build
+  script:
+    - cd build/
+    - make all
+    - make test
+    - docker login -u $DOCKER_BUILD_USER -p $DOCKER_BUILD_TOKEN
+    - make push

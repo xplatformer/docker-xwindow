@@ -1,0 +1,7 @@
+#!/bin/sh
+set -ex
+cd /tmp/
+
+apk add --update --no-cache make cmake g++ git libx11-dev libxrandr-dev libxi-dev
+
+rm -rf /tmp/* /var/tmp/* /var/cache/apk/*
