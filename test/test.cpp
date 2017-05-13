@@ -14,13 +14,15 @@ int main()
 {
     Customer obj;
 
-    std::cout << "Enter the ID :";
-    std::cin >> obj.id;
+    std::cout << "Enter the ID: ";
+    obj.id = 102;
+    std::cout << obj.id << std::endl;
 
-    std::cout << "Enter the Name :";
-    std::cin >> obj.name;
+    std::cout << "Enter the Name: ";
+    obj.name = "John Doe";
+    std::cout << obj.name << std::endl << std::endl;
 
-    std::cout << obj.name << ": " << obj.id << std::endl;
+    std::cout << "["<< obj.id << "] " << obj.name << std::endl;
 
     return 0;
 }

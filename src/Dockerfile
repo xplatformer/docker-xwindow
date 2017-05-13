@@ -1,11 +1,28 @@
-FROM jrbeverly/baseimage:3.5
+FROM ubuntu:17.04
 MAINTAINER jrbeverly
+
+# Build Arguments
+#
+# Arguments used in the build process of the docker container.
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Provision
 #
 # Copy and execute provisioning scripts of the docker container.
 COPY provision/install /tmp/install
 RUN sh /tmp/install && rm -f /tmp/install 
+
+# Volumes
+#
+# Volumes exposed by the docker container.
+VOLUME /media
+
+# Options
+#
+# Configuration options of the docker container.
+WORKDIR /media
+ENTRYPOINT []
+CMD []
 
 # User Arguments
 #
@@ -15,6 +32,14 @@ ARG USER
 # User
 #
 # Configuration of the docker user for container execution.
+ARG DUID
+ARG DGID
+ARG USER
+
+# User
+#
+# Configuration of the docker user for container execution.
+RUN addgroup --system --gid ${DGID} docker && adduser --system --ingroup docker --uid ${DUID} docker
 USER ${USER}
 
 # Metadata Arguments
@@ -38,4 +63,6 @@ LABEL \
     org.label-schema.vcs-url="https://gitlab.com/jrbeverly-docker/docker-xwindow.git" \
     org.label-schema.vendor="jrbeverly" \
     org.label-schema.version=$VERSION \
-    org.label-schema.schema-version="1.0"
+    org.label-schema.schema-version="1.0" \
+    io.gitlab.jrbeverly.user="${DUID}" \
+    io.gitlab.jrbeverly.group="${DGID}"

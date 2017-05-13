@@ -1,5 +1,6 @@
 include Makefile.metadata.variable
 include Makefile.image.variable
+include Makefile.user.variable
 
 # Variables
 #
@@ -41,6 +42,8 @@ build:
 		--build-arg BUILD_DATE="${BUILD_DATE}" \
 		--build-arg VERSION="${CODE_VERSION}" \
 		--build-arg VCS_REF="${GIT_COMMIT}" \
+		--build-arg DUID="${DUID}" \
+		--build-arg DGID="${DGID}" \
 		--build-arg USER="${USER}" \
 		-f ${DOCKERFILE} ${DOCKER_DIR}/.
 
