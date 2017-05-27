@@ -1,4 +1,4 @@
-FROM ubuntu:17.04
+FROM jrbeverly/baseimage:ubuntu-17.04
 MAINTAINER jrbeverly
 
 # Build Arguments
@@ -9,8 +9,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Provision
 #
 # Copy and execute provisioning scripts of the docker container.
-COPY provision/install /tmp/install
-RUN sh /tmp/install && rm -f /tmp/install 
+COPY provision/install.sh /tmp/install.sh
+RUN sh /tmp/install.sh && rm -f /tmp/install.sh
 
 # Volumes
 #
@@ -32,14 +32,6 @@ ARG USER
 # User
 #
 # Configuration of the docker user for container execution.
-ARG DUID
-ARG DGID
-ARG USER
-
-# User
-#
-# Configuration of the docker user for container execution.
-RUN addgroup --system --gid ${DGID} docker && adduser --system --ingroup docker --uid ${DUID} docker
 USER ${USER}
 
 # Metadata Arguments
@@ -55,14 +47,10 @@ ARG VCS_REF
 LABEL \
     org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.name="xwindow" \
-    org.label-schema.description="X11 development environmnet." \
+    org.label-schema.description="Provides the sufficient dependendencies for an X11 environment." \
     org.label-schema.url="" \
     org.label-schema.license="MIT" \
     org.label-schema.vcs-type="Git" \
     org.label-schema.vcs-ref=$VCS_REF \
     org.label-schema.vcs-url="https://gitlab.com/jrbeverly-docker/docker-xwindow.git" \
-    org.label-schema.vendor="jrbeverly" \
-    org.label-schema.version=$VERSION \
-    org.label-schema.schema-version="1.0" \
-    io.gitlab.jrbeverly.user="${DUID}" \
-    io.gitlab.jrbeverly.group="${DGID}"
+    org.label-schema.version=$VERSION 

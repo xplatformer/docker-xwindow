@@ -2,10 +2,8 @@
 set -ex
 cd /tmp/
 
-apt-get update -y
-apt-get  upgrade -y
-
+apt-get update
 apt-get install -y make g++ gcc libx11-dev mesa-common-dev libglu1-mesa-dev libxrandr-dev libxi-dev
-
 apt-get clean
+
 rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/
