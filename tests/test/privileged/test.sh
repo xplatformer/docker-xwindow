@@ -14,7 +14,7 @@ DIR_TARGET="${DIR_TESTS}/target"
 #
 # Tests
 #
-source $DIR_LIBRARY/testbase.sh
+. $DIR_LIBRARY/testbase.sh
 
 # 
 # Test Runner
@@ -27,7 +27,12 @@ source $DIR_LIBRARY/testbase.sh
     )
 
     (
-      RESULT=$(simple_svg)
-      assertEquals "convert simple rsvg" 0 $?
+      RESULT=$(version)
+      assertEquals "g++ installed" 0 $?
+    )
+
+    (
+      RESULT=$(simple_compile)
+      assertEquals "simple compile" 45 $?
     )
 )

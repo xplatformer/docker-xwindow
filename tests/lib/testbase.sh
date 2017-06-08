@@ -1,32 +1,28 @@
 #!/bin/sh
 
-#
-# Variables
-#
-SCRIPT=$(readlink -f "$0")
-DIR="$(dirname $SCRIPT)"
-DIR_ROOT="$(dirname $DIR)"
-
 # Tests
 #
 # A set of common functions that should be tested on the docker image.
 
-function install()
-{
-    apk add --update zip >/dev/null 2>&1
+install() {
+    apt-get update >/dev/null 2>&1
+    apt-get install -y zip >/dev/null 2>&1
 }
 
-function simple_svg()
-{
-    rsvg-convert resources/test.svg -o target/test.png
+version() {
+    g++ --version >/dev/null 2>&1
+}
+
+simple_compile() {
+    g++ $DIR_RESOURCES/test.cpp -o $DIR_TARGET/test >/dev/null 2>&1
+    (cd $DIR_TARGET && ./test) >/dev/null 2>&1
 }
 
 # Framework
 #
 # Assertion functions used by the test functions.
 
-function assertEquals()
-{
+assertEquals() {
     msg=$1
     expected=$2
     actual=$3
@@ -38,8 +34,7 @@ function assertEquals()
     fi
 }
 
-function assertNotEquals()
-{
+assertNotEquals() {
     msg=$1
     expected=$2
     actual=$3
