@@ -1,7 +1,7 @@
 FROM jrbeverly/baseimage:ubuntu-17.04
 
-# 
-# Build Arguments
+#
+# Provision
 #
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -10,11 +10,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 #
 COPY provision/install.sh /tmp/install.sh
 RUN sh /tmp/install.sh && rm -f /tmp/install.sh
-
-# Volumes
-#
-# Volumes exposed by the docker container.
-VOLUME /media
 
 # 
 # Options
