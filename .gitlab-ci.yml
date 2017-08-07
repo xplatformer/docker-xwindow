@@ -15,11 +15,11 @@ stages:
 variables:
   STAGING_REGISTRY: registry.gitlab.com
   STAGING_NAMESPACE: jrbeverly-docker
-  STAGING_PROJECT: docker-xwindow
+  STAGING_PROJECT: docker-rsvg
 
   REGISTRY: docker.io
   NAMESPACE: jrbeverly
-  PROJECT: xwindow
+  PROJECT: rsvg
 
   GIT_COMMIT: ${CI_COMMIT_SHA}
   TAG_PREFIX: ${CI_PIPELINE_ID}-
@@ -29,7 +29,7 @@ variables:
 # ----------------------------------------
 
 before_script:
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $STAGING_REGISTRY
   - apk --no-cache add make
 
 # ----------------------------------------
