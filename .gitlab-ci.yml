@@ -15,11 +15,11 @@ stages:
 variables:
   STAGING_REGISTRY: registry.gitlab.com
   STAGING_NAMESPACE: jrbeverly-docker
-  STAGING_PROJECT: docker-rsvg
+  STAGING_PROJECT: docker-xwindow
 
   REGISTRY: docker.io
   NAMESPACE: jrbeverly
-  PROJECT: rsvg
+  PROJECT: xwindow
 
   GIT_COMMIT: ${CI_COMMIT_SHA}
   TAG_PREFIX: ${CI_PIPELINE_ID}-
@@ -104,12 +104,7 @@ deploy:
   stage: deploy
   script:
     - docker login -u $DOCKER_BUILD_USER -p $DOCKER_BUILD_TOKEN
-    - make -C build/ VERSION=baseimage pull
-    - make -C build/ VERSION=privileged pull
-    - make -C build/ VERSION=baseimage release
-    - make -C build/ VERSION=privileged release
-    - make -C build/ VERSION=baseimage deploy
-    - make -C build/ VERSION=privileged deploy
+    - sh build/ci/deploy.sh
   dependencies:
     - test-baseimage
     - test-privileged
