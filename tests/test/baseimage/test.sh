@@ -14,8 +14,12 @@ DIR_TARGET="${DIR_TESTS}/target"
 #
 # Tests
 #
-. $DIR_LIBRARY/testbase.sh
-. $DIR_LIBRARY/functions.sh
+. $DIR_LIBRARY/framework.sh
+
+simple_compile() {
+    g++ $DIR_RESOURCES/test.cpp -o $DIR_TARGET/test >/dev/null 2>&1
+    (cd $DIR_TARGET && ./test) >/dev/null 2>&1
+}
 
 # 
 # Test Runner
@@ -25,12 +29,15 @@ DIR_TARGET="${DIR_TESTS}/target"
     mkdir -p $DIR_TARGET
     
     (
-      RESULT=$(install)
+      apt-get update >/dev/null 2>&1
+      apt-get install -y zip >/dev/null 2>&1
+
       assertEquals "cannot install to image" 100 $?
     )
 
     (
-      RESULT=$(version)
+      g++ --version >/dev/null 2>&1
+
       assertEquals "g++ installed" 0 $?
     )
 

@@ -11,9 +11,9 @@ assertEquals()
     actual=$3
 
     if [ "$expected" != "$actual" ]; then
-        echo "$msg: FAILED: EXPECTED=$expected ACTUAL=$actual"
+        echo "FAILED: $msg: EXPECTED=$expected ACTUAL=$actual"
     else
-        echo "$msg: PASSED"
+        echo "PASSED: $msg"
     fi
 }
 
@@ -24,8 +24,8 @@ assertNotEquals()
     actual=$3
 
     if [ "$expected" == "$actual" ]; then
-        echo "$msg: FAILED: EXPECTED=$expected ACTUAL=$actual"
+        echo "FAILED: $msg: Expected and actual match. ACTUAL=$actual"
     else
-        echo "$msg: PASSED"
+        echo "PASSED: $msg"
     fi
 }
