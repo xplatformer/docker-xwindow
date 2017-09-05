@@ -11,7 +11,7 @@ PATH_INFO := $(PATH_ROOT)/info
 # Makefile Variables
 #
 PATH_IMAGEFILE ?= $(PATH_INFO)/Makefile.image.variable
-PATH_VERSIONFILE ?= $(PATH_INFO)/Makefile.version.variable
+PATH_VERSIONFILE ?= $(PATH_INFO)/VERSION
 
 # 
 # Mount Path Variables
