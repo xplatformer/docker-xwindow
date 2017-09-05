@@ -10,6 +10,8 @@ TAG_SUFFIX ?=
 TAG_PREFIX ?=
 BUILD_PARAMETERS =
 
+include $(PATH_INFO)/Makefile.*.variable
+
 # Validation
 #
 # All rules below this point require the following properties to hold
@@ -84,7 +86,26 @@ info:
 	@echo PATH_TESTS = $(PATH_TESTS)
 	@echo
 	@echo Versions:
-	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " " )
+	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " " 
+
+help:
+	@echo Docker Makefile
+	@echo 
+	@echo Commands:
+	@echo 	build	Build the working image.
+	@echo 	clean	Removes the image (and all tags).
+	@echo 	debug	2
+	@echo 	deploy	34
+	@echo 	help	4
+	@echo 	image	Prints the working name of the image. 
+	@echo 	info	6
+	@echo 	inspect	Prints the variable value for a version.
+	@echo 	prune	Removes unused images.
+	@echo 	pull 	8
+	@echo 	purge 	Removes all images and containers.
+	@echo 	push	Removes the image (and all tags).
+	@echo 	release 4	
+	@echo 	test	3
 
 # Tidy Up
 #
@@ -106,6 +127,10 @@ purge:
 # Build
 #
 # Builds the image pulling variables from the `.variable` files
+
+# Prints the variable value (make inspect-VARIABLE)
+inspect: check-version check-tag
+	@echo $* = $($*)
 
 # Prints the working name of the image. 
 image: check-version check-tag

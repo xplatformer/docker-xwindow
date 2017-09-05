@@ -1,9 +1,14 @@
-FROM jrbeverly/baseimage:ubuntu-17.04
+FROM ubuntu:17.04
 
 #
 # Provision
 #
 ARG DEBIAN_FRONTEND=noninteractive
+
+# 
+# Environment Variables
+#
+ENV HOME=/
 
 #
 # Provision
@@ -21,7 +26,10 @@ CMD []
 #
 # User
 #
+ARG DUID
+ARG DGID
 ARG USER
+RUN addgroup --gid ${DGID} --system docker && adduser --system --uid ${DUID} --gid ${DGID} docker
 USER $USER
 
 #
@@ -49,11 +57,18 @@ LABEL \
     org.label-schema.vcs-ref=$VCS_REF \
     org.label-schema.vcs-url="https://gitlab.com/jrbeverly-docker/docker-xwindow" \
     org.label-schema.docker.cmd="docker run -v $(pwd):/media/ jrbeverly/xwindow:baseimage g++ test.cpp -o test" \
+    org.label-schema.vendor="jrbeverly" \
+    org.label-schema.schema-version="1.0" \
     \
     io.jrbeverly.project="xwindow" \
     io.jrbeverly.summary="A small x11 build image, running as the $USER user." \
+    io.jrbeverly.user=$DUID \
+    io.jrbeverly.group=$DGID \
+    \
     io.jrbeverly.xwindow.meta.BUILD_DATE="The Date/Time the image was built." \
     io.jrbeverly.xwindow.meta.VERSION="Release identifier for the contents of the image." \
     io.jrbeverly.xwindow.meta.VCS_REF="Identifier for the version of the source code from which this image was built." \
     io.jrbeverly.xwindow.args.USER="Sets the [user](http://www.linfo.org/uid.html) to use when running the image." \
+    io.jrbeverly.xwindow.args.DUID="The [user id](http://www.linfo.org/uid.html) of the docker user." \
+    io.jrbeverly.xwindow.args.DGID="The [group id](http://www.linfo.org/uid.html) of the docker user's group." \
     io.jrbeverly.xwindow.volume.media="/media/|The default working directory of the image."
