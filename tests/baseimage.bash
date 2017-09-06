@@ -24,7 +24,12 @@ DIR_TARGET="${DIR_TESTS}/target"
 }
 
 @test "cache is empty" {
-    run docker run --rm --entrypoint sh "${DOCKER_IMAGE_NAME}" -c "ls -1 /var/cache/apk | wc -l"
+    run docker run --rm --entrypoint sh "${DOCKER_IMAGE_NAME}" -c "ls -1 /var/lib/apt/lists/ | wc -l"
+    [ "$status" -eq 0 ]
+}
+
+@test "tmp is empty" {
+    run docker run --rm --entrypoint sh "${DOCKER_IMAGE_NAME}" -c "ls -1 /var/tmp/ | wc -l"
     [ "$status" -eq 0 ]
 }
 
