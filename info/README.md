@@ -2,6 +2,10 @@
 
 A global constants folder that stores global variables of the docker repository.
 
+## Project Version
+
+The project version is defined in the `info/VERSION` file.
+
 ## Makefile.image.variable
 
 The project build requires the `Makefile.image.variable` file to store the variables `REGISTRY`, `NAMESPACE`, and `PROJECT`. The variables are defined below:

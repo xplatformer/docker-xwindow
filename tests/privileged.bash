@@ -5,6 +5,10 @@
 #
 DIR_TESTS="$(dirname $(readlink -f "$0"))"
 
+DIR_LIBRARY="${DIR_TESTS}/lib"
+DIR_RESOURCES="${DIR_TESTS}/resources"
+DIR_TARGET="${DIR_TESTS}/target"
+
 #
 # Tests
 #
