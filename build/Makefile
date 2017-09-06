@@ -156,7 +156,15 @@ build: check-path check-tag
 # Tests the working docker image
 test: check-version check-tag check-test
 	@echo Running '$(VERSION)' tests on $(WORKING_IMAGE).
-	docker run --rm -v $(MOUNT_TESTS):/media $(WORKING_IMAGE) sh test/$(VERSION)/test.sh
+	docker run --rm --privileged \
+		-v $(MOUNT_TESTS):/media --workdir /media \
+		-e DOCKER_IMAGE_NAME=$(WORKING_IMAGE) \
+		-e DOCKER_PATH=$(MOUNT_TESTS) \
+		\
+		-v /var/run/docker.sock:/docker.sock \
+		-e DOCKER_HOST="unix:///docker.sock" \
+		\
+		jrbeverly/dind-bats bats $(VERSION).bash
 
 # Registry 
 #
@@ -184,8 +192,8 @@ deploy: check-version check-tag
 
 # Ensures that the test path is valid
 check-test:
-ifeq (,$(wildcard $(PATH_DOCKER_TEST)/test.sh))
-	$(error The testing for version [$(VERSION)] is not valid for this image.  See tests/test/ for possible image versions [$(PATH_DOCKER_TEST)/test.sh])
+ifeq (,$(wildcard $(PATH_DOCKER_TEST)))
+	$(error The testing for version [$(VERSION)] is not valid for this image.  See tests/test/ for possible image versions [$(PATH_DOCKER_TEST)])
 endif
 
 # Ensures that the tag is set

@@ -14,6 +14,6 @@ DIR_VERSIONS="${DIR_ROOT}/versions"
 for dir in $DIR_VERSIONS/*/; 
 do 
   version=$(basename ${dir%*/}); 
-  
-  make -s -C "${DIR_BUILD}" VERSION=${version} test
+
+  make -s -C "${DIR_BUILD}" VERSION=${version} pull
 done

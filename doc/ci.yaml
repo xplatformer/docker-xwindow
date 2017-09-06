@@ -1,0 +1,7 @@
+compile_pdf:
+  image: jrbeverly/xwindow:baseimage
+  script:
+    - g++ test.cpp -o test
+  artifacts:
+    paths:
+      - test
