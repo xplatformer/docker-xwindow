@@ -29,6 +29,7 @@ The project build requires the `Makefile.options` file to provide the `TAG` vari
 |Variable|Description|
 |---|---|
 |TAG|The tag of the image.|
+|ALIASES|Additional tags of the image. **[Optional]**|
 |BUILD_PARAMS|Additional build parameters passed to the [docker build](https://docs.docker.com/engine/reference/commandline/build/) command.|
 |PATH_DOCKER|A directory to use as the build’s context. (Default is `src/`)|
 |PATH_DOCKERFILE|The Dockerfile to use. (Default is `src/Dockerfile`)|
@@ -50,4 +51,4 @@ The `Makefile.options` file will be loaded first.
 
 The `Makefile` present in the `build/` directory loads all files that match the regular expression `Makefile.*.variable`. These variables will be loaded by the `Makefile`.
 
-These `Makefile.*.variable` files will be loaded after the `Makefile.options`.
+These `Makefile.*.variable` files will be loaded before the `Makefile.options`.
