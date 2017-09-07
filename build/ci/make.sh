@@ -15,12 +15,5 @@ for dir in $DIR_VERSIONS/*/;
 do 
   version=$(basename ${dir%*/}); 
   
-  make -s -C "${DIR_BUILD}" VERSION=${version} release
-done
-
-for dir in $DIR_VERSIONS/*/; 
-do 
-  version=$(basename ${dir%*/}); 
-  
-  make -s -C "${DIR_BUILD}" VERSION=${version} deploy
+  make -s -C "${DIR_BUILD}" VERSION=${version} "$@"
 done

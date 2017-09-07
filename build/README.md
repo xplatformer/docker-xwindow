@@ -18,6 +18,8 @@ You can perform actions on all versions using the `ci/` scripts. These scripts c
 sh ci/build.sh
 ```
 
+A make script is available as `ci/make.sh <function>` that will loop through each of the versions passing in the [`Makefile`](build/Makefile) arguments.
+
 ## Versioning
 
 The image tags exist as definition files in the `versions/` directory. The `Makefile.options` file for each image tag allows the altering of variables in the build process. From the file the image tag is set, as well as any additional build parameters. Each `Makefile.options` file is stored in a directory named after the image version. The following is a `Makefile.options` file contained within the directory `versions/baseimage`:
