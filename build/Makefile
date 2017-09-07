@@ -86,14 +86,14 @@ info:
 	@echo PATH_TESTS = $(PATH_TESTS)
 	@echo
 	@echo Versions:
-	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " " 
+	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " ")
 
 help:
 	@echo Docker Makefile
 	@echo 
 	@echo Commands:
-	@echo 	build	Build the working image.
-	@echo 	clean	Removes the image (and all tags).
+	@echo  	build	Build the working image.
+	@echo 	clean	Removes the image and all tags.
 	@echo 	debug	2
 	@echo 	deploy	34
 	@echo 	help	4
