@@ -9,11 +9,15 @@ DIR_BUILD="${DIR_ROOT}/build"
 DIR_VERSIONS="${DIR_ROOT}/versions"
 
 #
-# Executing
+# Functions
 #
-for dir in $DIR_VERSIONS/*/; 
-do 
-  version=$(basename ${dir%*/}); 
-  
-  make -s -C "${DIR_BUILD}" VERSION=${version} "$@"
-done
+call_make() {
+  for dir in $DIR_VERSIONS/*/; 
+  do 
+    version=$(basename ${dir%*/}); 
+    
+    make -s -C "${DIR_BUILD}" VERSION=${version} "$@"
+  done
+}
+
+"$@"

@@ -1,26 +1,8 @@
 #!/bin/sh
-
-#
-# Variables
-#
-DIR="$(dirname $(readlink -f "$0"))"
-DIR_ROOT="$(dirname $(dirname $DIR))"
-DIR_BUILD="${DIR_ROOT}/build"
-DIR_VERSIONS="${DIR_ROOT}/versions"
+. "$(dirname $(readlink -f "$0"))"/make.sh
 
 #
 # Executing
 #
-for dir in $DIR_VERSIONS/*/; 
-do 
-  version=$(basename ${dir%*/}); 
-  
-  make -s -C "${DIR_BUILD}" VERSION=${version} release
-done
-
-for dir in $DIR_VERSIONS/*/; 
-do 
-  version=$(basename ${dir%*/}); 
-  
-  make -s -C "${DIR_BUILD}" VERSION=${version} deploy
-done
+call_make pull
+call_make deploy

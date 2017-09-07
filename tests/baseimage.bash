@@ -12,7 +12,6 @@ DIR_TARGET="${DIR_TESTS}/target"
 #
 # Tests
 #
-
 @test "user is not root" {
     run docker run --rm "${DOCKER_IMAGE_NAME}" id -u
     [ "$output" != "0" ]
