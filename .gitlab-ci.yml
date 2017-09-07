@@ -29,7 +29,7 @@ variables:
 # ----------------------------------------
 
 before_script:
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $STAGING_REGISTRY
   - apk --no-cache add make
 
 # ----------------------------------------
@@ -104,12 +104,8 @@ deploy:
   stage: deploy
   script:
     - docker login -u $DOCKER_BUILD_USER -p $DOCKER_BUILD_TOKEN
-    - make -C build/ VERSION=baseimage pull
-    - make -C build/ VERSION=privileged pull
-    - make -C build/ VERSION=baseimage release
-    - make -C build/ VERSION=privileged release
-    - make -C build/ VERSION=baseimage deploy
-    - make -C build/ VERSION=privileged deploy
+    - sh build/ci/pull.sh
+    - sh build/ci/deploy.sh
   dependencies:
     - test-baseimage
     - test-privileged

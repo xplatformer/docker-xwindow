@@ -21,7 +21,7 @@ A super small Alpine image with libx11 development environment installed.
 You can use this image locally with `docker run`, calling [`rsvg-convert`](http://manpages.ubuntu.com/manpages/zesty/man1/rsvg-convert.1.html) as such:
 
 ```console
-docker run -v /media/:/media/ jrbeverly/rsvg:baseimage rsvg-convert test.svg -o test.png
+docker run -v /media/:/media/ jrbeverly/rsvg:baseimage g++ test.cpp -o test
 ```
 
 ### Gitlab
@@ -31,7 +31,7 @@ You can setup a build job using `.gitlab-ci.yml`:
 compile_pdf:
   image: jrbeverly/xwindow:baseimage
   script:
-    - rsvg-convert test.svg -o test.png
+    - g++ test.cpp -o test
   artifacts:
     paths:
       - test.png
@@ -93,10 +93,10 @@ The docker image follows the [Label Schema Convention](http://label-schema.org).
 docker inspect -f '{{ index .Config.Labels "org.label-schema.LABEL" }}' IMAGE
 ```
 
-The label namespace `io.gitlab.jrbeverly` is common among `jrbeverly-docker` images and is a loosely structured set of values.  The values in the namespace can be accessed by the following command:
+The label namespace `org.doc-schema` is common among `jrbeverly-docker` images and is a loosely structured set of values.  The values in the namespace can be accessed by the following command:
 
 ```console
-docker inspect -f '{{ index .Config.Labels "io.gitlab.jrbeverly.LABEL" }}' IMAGE
+docker inspect -f '{{ index .Config.Labels "org.doc-schema.LABEL" }}' IMAGE
 ```
 
 ## User and Group Mapping
@@ -106,8 +106,8 @@ All processes within the docker container will be run as the **docker user**, a 
 Any permissions on the host operating system (OS) associated with either the user (`DUID`) or group (`DGID`) will be associated with the docker user.  The values of `DUID` and `DGID` are visible in the [Build Arguments](#build-arguments), and can be accessed by the commands:
 
 ```console
-docker inspect -f '{{ index .Config.Labels "io.gitlab.jrbeverly.user" }}' IMAGE
-docker inspect -f '{{ index .Config.Labels "io.gitlab.jrbeverly.group" }}' IMAGE
+docker inspect -f '{{ index .Config.Labels "org.doc-schema.user" }}' IMAGE
+docker inspect -f '{{ index .Config.Labels "org.doc-schema.group" }}' IMAGE
 ```
 
 The notation of the build variables is short form for docker user id (`DUID`) and docker group id (`DGID`). 

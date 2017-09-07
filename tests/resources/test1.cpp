@@ -24,5 +24,5 @@ int main()
 
     std::cout << "["<< obj.id << "] " << obj.name << std::endl;
 
-    return 45;
+    return 0;
 }

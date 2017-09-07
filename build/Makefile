@@ -10,6 +10,8 @@ TAG_SUFFIX ?=
 TAG_PREFIX ?=
 BUILD_PARAMETERS =
 
+include $(PATH_INFO)/Makefile.*.variable
+
 # Validation
 #
 # All rules below this point require the following properties to hold
@@ -84,7 +86,26 @@ info:
 	@echo PATH_TESTS = $(PATH_TESTS)
 	@echo
 	@echo Versions:
-	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " " )
+	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " " 
+
+help:
+	@echo Docker Makefile
+	@echo 
+	@echo Commands:
+	@echo 	build	Build the working image.
+	@echo 	clean	Removes the image (and all tags).
+	@echo 	debug	2
+	@echo 	deploy	34
+	@echo 	help	4
+	@echo 	image	Prints the working name of the image. 
+	@echo 	info	6
+	@echo 	inspect	Prints the variable value for a version.
+	@echo 	prune	Removes unused images.
+	@echo 	pull 	8
+	@echo 	purge 	Removes all images and containers.
+	@echo 	push	Removes the image (and all tags).
+	@echo 	release 4	
+	@echo 	test	3
 
 # Tidy Up
 #
@@ -106,6 +127,10 @@ purge:
 # Build
 #
 # Builds the image pulling variables from the `.variable` files
+
+# Prints the variable value (make inspect-VARIABLE)
+inspect: check-version check-tag
+	@echo $* = $($*)
 
 # Prints the working name of the image. 
 image: check-version check-tag
@@ -131,7 +156,15 @@ build: check-path check-tag
 # Tests the working docker image
 test: check-version check-tag check-test
 	@echo Running '$(VERSION)' tests on $(WORKING_IMAGE).
-	docker run --rm -v $(MOUNT_TESTS):/media $(WORKING_IMAGE) sh test/$(VERSION)/test.sh
+	docker run --rm --privileged \
+		-v $(MOUNT_TESTS):/media --workdir /media \
+		-e DOCKER_IMAGE_NAME=$(WORKING_IMAGE) \
+		-e DOCKER_PATH=$(MOUNT_TESTS) \
+		\
+		-v /var/run/docker.sock:/docker.sock \
+		-e DOCKER_HOST="unix:///docker.sock" \
+		\
+		jrbeverly/dind-bats bats $(VERSION).bash
 
 # Registry 
 #
@@ -159,8 +192,8 @@ deploy: check-version check-tag
 
 # Ensures that the test path is valid
 check-test:
-ifeq (,$(wildcard $(PATH_DOCKER_TEST)/test.sh))
-	$(error The testing for version [$(VERSION)] is not valid for this image.  See tests/test/ for possible image versions [$(PATH_DOCKER_TEST)/test.sh])
+ifeq (,$(wildcard $(PATH_DOCKER_TEST)))
+	$(error The testing for version [$(VERSION)] is not valid for this image.  See tests/test/ for possible image versions [$(PATH_DOCKER_TEST)])
 endif
 
 # Ensures that the tag is set
