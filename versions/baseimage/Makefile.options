@@ -1,6 +1,7 @@
 # Image
 TAG := baseimage
 USER := docker
+ALIASES := latest
 
 BUILD_PARAMS := --build-arg DUID="${DUID}" --build-arg DGID="${DGID}" --build-arg USER="${USER}"
 

@@ -98,19 +98,19 @@ prune: ## Remove all unused images (both dangling and unreferenced).
 clean: ## Remove one or more tags of the image.
 	docker images | grep $(STAGING_NAMESPACE)/$(STAGING_PROJECT) | tr -s ' ' | cut -d ' ' -f 3 | xargs --no-run-if-empty docker rmi
 
-
 purge: ## Remove all unused containers and images (both dangling and unreferenced).
 	docker ps -qa | xargs --no-run-if-empty docker rm -fv
 	docker images -qa | xargs --no-run-if-empty docker rmi -f
 
-pull: check-version check-tag ## Pull the working docker image from a registry.
+pull: check-version check-tag ## Pull the working docker image from a staging registry.
 	docker pull $(WORKING_IMAGE)
 
-push: check-version check-tag ## Push the working docker image to a registry.
+push: check-version check-tag ## Push the working docker image to a staging registry.
 	docker push $(WORKING_IMAGE)
 
 release: check-version check-tag ## Tag the working image as a release image.
 	docker tag $(WORKING_IMAGE) $(IMAGE):$(TAG)
+	for _alias in $(ALIASES) ; do docker tag $(WORKING_IMAGE) $(IMAGE):$$_alias; done
 
 deploy: check-version check-tag ## Push the docker image to a registry.
 	docker push $(IMAGE):$(TAG)

@@ -37,13 +37,13 @@ You also have access to other variables in the `Makefile` that can be set. You c
 
 ### Variables
 
-|Name|Description|
-|---|---|
-|TAG|The tag of the image version.|
-|ALIASES|Additional tags of the image. **[Optional]**|
-|BUILD_PARAMS|Additional build parameters passed to the [docker build](https://docs.docker.com/engine/reference/commandline/build/) command.|
-|PATH_DOCKER| A directory to use as the build’s context. (Default is `src/`)|
-|PATH_DOCKERFILE|Path of the Dockerfile. (Default is `src/Dockerfile`)|
+|Name|Description|Example|
+|---|---|---|
+|TAG|The tag of the image version.|`baseimage`|
+|ALIASES|Additional tags of the image. **[Optional]**|`myalias1 myalias2 myalias3`|
+|BUILD_PARAMS|Additional build parameters passed to the [docker build](https://docs.docker.com/engine/reference/commandline/build/) command.|`--build-arg MY_ARG="value1"`|
+|PATH_DOCKER| A directory to use as the build’s context. (Default is `src/`)|`$(PATH_ROOT)/src`|
+|PATH_DOCKERFILE|Path of the Dockerfile. (Default is `src/Dockerfile`)|`$(PATH_DOCKER)/Dockerfile`|
 
 You can look for other variables in any file that ends with `*.variable`. These files are available in `info/` and `build/`, where they have variables relevant to the image and build respectively.
 
