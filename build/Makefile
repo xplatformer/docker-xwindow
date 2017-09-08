@@ -15,7 +15,7 @@ include $(PATH_INFO)/Makefile.*.variable
 #======================== 
 # Rule Validation
 #======================== 
-RULES := image build test pull push release deploy output inspect-%
+RULES := image build test pull push release deploy debug inspect-%
 ifneq (,$(filter $(RULES),$(MAKECMDGOALS)))
 ifeq ($(VERSION),$(DEFAULT_VERSION))
 $(error The version is not properly set for the command (make VERSION=<-> COMMAND))
@@ -53,7 +53,7 @@ WORKING_IMAGE ?= $(STAGING_IMAGE):$(TAG_PREFIX)$(TAG)$(TAG_SUFFIX)
 ## Rules
 ##======================== 
 
-.PHONY: build test prune purge clean debug pull push release image inspect-% info debug check-env help
+.PHONY: build test prune purge clean debug pull push release image info check-env help inspect-% print-%
 .DEFAULT_GOAL := help
 
 
@@ -64,7 +64,7 @@ WORKING_IMAGE ?= $(STAGING_IMAGE):$(TAG_PREFIX)$(TAG)$(TAG_SUFFIX)
 help:
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
-debug-% : ; @echo $* = $($*)
+print-% : ; @echo $* = $($*)
 
 status: ## Prints common project variables used for debugging.
 	@echo CODE_VERSION = $(CODE_VERSION)
@@ -86,7 +86,7 @@ status: ## Prints common project variables used for debugging.
 	@echo Versions:
 	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " ")
 
-output: check-version check-tag ## Prints common project variables used for debugging.
+debug: check-version check-tag ## Prints common project variables used for version debugging.
 	@echo VERSION: $(VERSION)
 	@echo
 	@echo TAG: $(TAG)
