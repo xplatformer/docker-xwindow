@@ -15,7 +15,7 @@ include $(PATH_INFO)/Makefile.*.variable
 #======================== 
 # Rule Validation
 #======================== 
-RULES := image build test pull push release deploy inspect-%
+RULES := image build test pull push release deploy output inspect-%
 ifneq (,$(filter $(RULES),$(MAKECMDGOALS)))
 ifeq ($(VERSION),$(DEFAULT_VERSION))
 $(error The version is not properly set for the command (make VERSION=<-> COMMAND))
@@ -66,12 +66,10 @@ help:
 
 debug-% : ; @echo $* = $($*)
 
-info: ## Prints a collection of vital project variables.
-	@echo Image Version: $(VERSION)
+status: ## Prints common project variables used for debugging.
 	@echo CODE_VERSION = $(CODE_VERSION)
 	@echo GIT_COMMIT = $(GIT_COMMIT)
 	@echo BUILD_DATE = $(BUILD_DATE)
-	@echo Working Image: $(WORKING_IMAGE)
 	@echo
 	@echo Registry:
 	@echo IMAGE = $(IMAGE)
@@ -87,6 +85,26 @@ info: ## Prints a collection of vital project variables.
 	@echo
 	@echo Versions:
 	@echo $(shell ls ${PATH_VERSIONS} | tr "\n" " ")
+
+output: check-version check-tag ## Prints common project variables used for debugging.
+	@echo VERSION: $(VERSION)
+	@echo
+	@echo TAG: $(TAG)
+	@echo IMAGE: $(WORKING_IMAGE)
+	@echo ALIASES: $(ALIASES)
+	@echo PARAMS: $(BUILD_PARAMS)
+	@echo
+	@echo Registry:
+	@echo IMAGE = $(IMAGE)
+	@echo STAGING_IMAGE = $(STAGING_IMAGE)	
+	@echo
+	@echo Pathing:
+	@echo PATH_DOCKER: $(PATH_DOCKER)
+	@echo PATH_DOCKERFILE: $(PATH_DOCKERFILE)
+	@echo PATH_BUILD = $(PATH_BUILD)
+	@echo PATH_ROOT = $(PATH_ROOT)
+	@echo PATH_VERSIONS = $(PATH_VERSIONS)
+	@echo PATH_TESTS = $(PATH_TESTS)
 
 #======================== 
 # Docker Rules
