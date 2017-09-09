@@ -30,7 +30,7 @@ variables:
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $STAGING_REGISTRY
-  - apk --no-cache add make
+  - apk --update-cache add make
 
 # ----------------------------------------
 # Build
