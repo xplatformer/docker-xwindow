@@ -50,16 +50,15 @@ LABEL \
     org.label-schema.summary="A super small image providing a x11 build image." \
     org.label-schema.description="Provides the sufficient dependendencies for an X11 environment." \
     org.label-schema.maintainer="jrbeverly" \
-    org.label-schema.build-date="$BUILD_DATE" \
-    org.label-schema.version="$VERSION" \
+    org.label-schema.build-date=$BUILD_DATE \
+    org.label-schema.version=$VERSION \
     org.label-schema.url="https://www.x.org/wiki/" \
     org.label-schema.license="MIT" \
     org.label-schema.docker.cmd="docker run -v $(pwd):/media/ jrbeverly/xwindow:baseimage g++ test.cpp -o test" \
     org.label-schema.vendor="jrbeverly" \
     org.label-schema.schema-version="1.0" \
     \
-    org.label-schema.vcs-type="Git" \
-    org.label-schema.vcs-ref="$VCS_REF" \
+    org.label-schema.vcs-ref=$VCS_REF \
     org.label-schema.vcs-url="https://gitlab.com/jrbeverly-docker/docker-xwindow" \
     \
     org.doc-schema.project="xwindow" \
