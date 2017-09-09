@@ -138,6 +138,7 @@ release: check-version check-tag ## Tag the working image as a release image.
 
 deploy: check-version check-tag ## Push the docker image to a registry.
 	docker push $(IMAGE):$(TAG)
+	for _alias in $(ALIASES) ; do docker push $(IMAGE):$$_alias; done
 
 #========================
 # Build Rules
