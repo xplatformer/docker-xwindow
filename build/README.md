@@ -4,7 +4,7 @@
 
 You can use the [`Makefile`](build/Makefile) to perform a series of common tasks like: [ `build`, `test`, `push`, `pull` ]. These will handle the logic of building, tagging and pushing the image with the appropriate names and tags. 
 
-```
+```bash
 make VERSION=myversion build
 make VERSION=myversion test
 make VERSION=myversion push
@@ -12,7 +12,7 @@ make VERSION=myversion push
 
 To see all the commands available from the [`Makefile`](build/Makefile), you can do the following:
 
-```
+```bash
 make help
 ```
 
@@ -20,7 +20,7 @@ make help
 
 To build the docker image, use the included [`Makefile`](build/Makefile). It is recommended to use the makefile to ensure all build arguments are provided.
 
-```
+```bash
 make VERSION=<version> build
 ```
 
@@ -30,7 +30,7 @@ You can also build the image manually, as visible in [`Makefile`](build/Makefile
 
 You can perform actions on all versions using the `ci/` scripts. These scripts can be called without any parameters and will perform an action all on all of the images. 
 
-```console
+```bash
 sh ci/build.sh
 ```
 
@@ -40,7 +40,7 @@ A make script is available as `ci/make.sh <function>` that will loop through eac
 
 The image tags exist as definition files in the `versions/` directory. The `Makefile.options` file for each image tag allows the altering of variables in the build process. From the file the image tag is set, as well as any additional build parameters. Each `Makefile.options` file is stored in a directory named after the image version. The following is a `Makefile.options` file contained within the directory `versions/baseimage`:
 
-```make
+```makefile
 TAG := baseimage
 
 BUILD_PARAMS := --build-arg USER="docker" --build-arg MINIFY_URL="github.com/tdewolff/minify/cmd/minify"
