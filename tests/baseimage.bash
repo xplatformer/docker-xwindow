@@ -38,11 +38,11 @@ DIR_TARGET="${DIR_TESTS}/target"
 }
 
 @test "compile program" {
-    docker run --rm -v "${DOCKER_PATH}":/media --workdir /media "${DOCKER_IMAGE_NAME}" sh resources/compile.sh test1
-    [ "$?" -eq 0 ]
+    run docker run --rm -v "${DOCKER_PATH}":/media --workdir /media "${DOCKER_IMAGE_NAME}" sh resources/compile.sh test1
+    [ "$status" -eq 0 ]
 }
 
 @test "compile x11 program" {
-    docker run --rm -v "${DOCKER_PATH}":/media --workdir /media "${DOCKER_IMAGE_NAME}" sh resources/compile.sh test2 
-    [ "$?" -eq 0 ]
+    run docker run --rm -v "${DOCKER_PATH}":/media --workdir /media "${DOCKER_IMAGE_NAME}" sh resources/compile.sh test2 
+    [ "$status" -eq 0 ]
 }

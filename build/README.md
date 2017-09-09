@@ -1,6 +1,22 @@
 # Docker Build
 
-## Building
+## Commands
+
+You can use the [`Makefile`](build/Makefile) to perform a series of common tasks like: [ `build`, `test`, `push`, `pull` ]. These will handle the logic of building, tagging and pushing the image with the appropriate names and tags. 
+
+```
+make VERSION=myversion build
+make VERSION=myversion test
+make VERSION=myversion push
+```
+
+To see all the commands available from the [`Makefile`](build/Makefile), you can do the following:
+
+```
+make help
+```
+
+### Building
 
 To build the docker image, use the included [`Makefile`](build/Makefile). It is recommended to use the makefile to ensure all build arguments are provided.
 
@@ -37,15 +53,15 @@ You also have access to other variables in the `Makefile` that can be set. You c
 
 ### Variables
 
-|Name|Description|
-|---|---|
-|TAG|The tag of the image version.|
-|ALIASES|Additional tags of the image. **[Optional]**|
-|BUILD_PARAMS|Additional build parameters passed to the [docker build](https://docs.docker.com/engine/reference/commandline/build/) command.|
-|PATH_DOCKER| A directory to use as the build’s context. (Default is `src/`)|
-|PATH_DOCKERFILE|Path of the Dockerfile. (Default is `src/Dockerfile`)|
+|Name|Description|Example|
+|---|---|---|
+|TAG|The tag of the image version.|`baseimage`|
+|ALIASES|Additional tags of the image.|`myalias1 myalias2 myalias3`|
+|BUILD_PARAMS|Additional build parameters passed to the [docker build](https://docs.docker.com/engine/reference/commandline/build/) command.|`--build-arg MY_ARG="value1"`|
+|PATH_DOCKER| A directory to use as the build’s context. (Default is `src/`)|`$(PATH_ROOT)/src`|
+|PATH_DOCKERFILE|Path of the Dockerfile. (Default is `src/Dockerfile`)|`$(PATH_DOCKER)/Dockerfile`|
 
-You can look for other variables in any file that ends with `*.variable`. These files are available in `info/` and `build/`, where they have variables relevant to the image and build respectively.
+You can look for other variables in any file that matches the regular expression `Makefile.*.variable`. These files are available in `info/` and `build/`, where they have variables relevant to the image and build respectively.
 
 ## Registries
 
