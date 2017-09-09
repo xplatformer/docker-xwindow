@@ -4,5 +4,5 @@
 #
 # Executing
 #
-call_make pull
+call_make release
 call_make deploy
