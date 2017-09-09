@@ -38,29 +38,23 @@ before_script:
 
 build-baseimage:
   stage: build
-  variables: 
+  variables:
     VERSION: baseimage
   script:
     - make -C build/ build
     - make -C build/ push
   only:
     - web
-    - /^version-.*$/
-  except:
-    - branches
 
 build-privileged:
   stage: build
-  variables: 
+  variables:
     VERSION: privileged
   script:
     - make -C build/ build
     - make -C build/ push
   only:
     - web
-    - /^version-.*$/
-  except:
-    - branches
 
 # ----------------------------------------
 # Tests
@@ -68,7 +62,7 @@ build-privileged:
 
 test-baseimage:
   stage: test
-  variables: 
+  variables:
     VERSION: baseimage
   script:
     - make -s -C build/ pull
@@ -77,13 +71,10 @@ test-baseimage:
     - build-baseimage
   only:
     - web
-    - /^version-.*$/
-  except:
-    - branches
 
 test-privileged:
   stage: test
-  variables: 
+  variables:
     VERSION: privileged
   script:
     - make -s -C build/ pull
@@ -92,9 +83,6 @@ test-privileged:
     - build-privileged
   only:
     - web
-    - /^version-.*$/
-  except:
-    - branches
 
 # ----------------------------------------
 # Deploy
@@ -111,6 +99,3 @@ deploy:
     - test-privileged
   only:
     - web
-    - /^version-.*$/
-  except:
-    - branches
