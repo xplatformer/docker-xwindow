@@ -44,7 +44,7 @@ build-baseimage:
     - make -C build/ build
     - make -C build/ push
   only:
-    - triggers
+    - master
     - /^version-.*$/
   except:
     - branches
@@ -57,7 +57,7 @@ build-privileged:
     - make -C build/ build
     - make -C build/ push
   only:
-    - triggers
+    - master
     - /^version-.*$/
   except:
     - branches
@@ -76,7 +76,7 @@ test-baseimage:
   dependencies:
     - build-baseimage
   only:
-    - triggers
+    - master
     - /^version-.*$/
   except:
     - branches
@@ -91,7 +91,7 @@ test-privileged:
   dependencies:
     - build-privileged
   only:
-    - triggers
+    - master
     - /^version-.*$/
   except:
     - branches
@@ -110,7 +110,7 @@ deploy:
     - test-baseimage
     - test-privileged
   only:
-    - triggers
+    - master
     - /^version-.*$/
   except:
     - branches
