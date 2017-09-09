@@ -48,8 +48,8 @@ Build tags available with the [image](https://hub.docker.com/r/jrbeverly/xwindow
 
 | Tag | Status | Description |
 | --- | ------ | ----------- |
-| [![Version base][base-badge]][base-link] | [![Image base][base-image-badge]][base-link] | A docker image with librsvg installed, running as docker user (`DUID`) with limited permissions. |
-| [![Version privileged][privileged-badge]][privileged-link] | [![Image privileged][privileged-image-badge]][privileged-link]  | A docker image with librsvg installed, running with elevated permissions (root). |
+| [![Version base][base-badge]][base-link] | [![Image base][base-image-badge]][base-link] | A docker image with libx11 installed, running as docker user (`DUID`) with limited permissions. |
+| [![Version privileged][privileged-badge]][privileged-link] | [![Image privileged][privileged-image-badge]][privileged-link]  | A docker image with libx11 installed, running with elevated permissions (root). |
 
 ## Components
 
@@ -122,8 +122,8 @@ The notation of the build variables is short form for docker user id (`DUID`) an
 [image-badge]: https://img.shields.io/badge/ubuntu-17.04-orange.svg?maxAge=2592000
 [image-link]: https://hub.docker.com/r/_/ubuntu/ "The common base image."
 
-[build-badge]: https://gitlab.com/jrbeverly-docker/docker-rsvg/badges/master/build.svg
-[build-link]: https://gitlab.com/jrbeverly-docker/docker-rsvg/commits/master "Current build status."
+[build-badge]: https://gitlab.com/jrbeverly-docker/docker-xwindow/badges/master/build.svg
+[build-link]: https://gitlab.com/jrbeverly-docker/docker-xwindow/commits/master "Current build status."
 
 [docker-badge]: https://img.shields.io/badge/jrbeverly-xwindow-red.svg?maxAge=2592000
 [docker-link]: https://hub.docker.com/r/jrbeverly/xwindow/ "The docker image."
