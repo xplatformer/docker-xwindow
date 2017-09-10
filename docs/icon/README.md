@@ -9,6 +9,3 @@ By cre.ativo mustard, HK from the Noun Project
 * **License**: Creative Commons
 
 ---
-## Icon
-
-![project icon](icon.svg "project icon")
