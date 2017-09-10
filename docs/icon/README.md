@@ -11,4 +11,4 @@ By cre.ativo mustard, HK from the Noun Project
 ---
 ## Icon
 
-![project icon](/doc/icon/icon.svg "project icon")
+![project icon](icon.svg "project icon")
