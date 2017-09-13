@@ -1,6 +1,6 @@
 # Icon Credits
 ## Cloud Docker
-By cre.ativo mustard, HK from the Noun Project
+By [cre.ativo mustard](https://thenounproject.com/cre.ativo.mustard), HK from the Noun Project
 
 ---
 
@@ -9,6 +9,3 @@ By cre.ativo mustard, HK from the Noun Project
 * **License**: Creative Commons
 
 ---
-## Icon
-
-![project icon](/doc/icon/icon.svg "project icon")
