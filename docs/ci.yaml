@@ -1,7 +1,7 @@
-compile_pdf:
+build:
   image: jrbeverly/xwindow:baseimage
   script:
-    - g++ test.cpp -o test
+    - g++ myxapp.cpp -o xapp
   artifacts:
     paths:
-      - test
+      - xapp
