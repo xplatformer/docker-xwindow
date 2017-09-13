@@ -54,7 +54,7 @@ LABEL \
     org.label-schema.version=$VERSION \
     org.label-schema.url="https://www.x.org/wiki/" \
     org.label-schema.license="MIT" \
-    org.label-schema.docker.cmd="docker run -v $(pwd):/media/ jrbeverly/xwindow:baseimage g++ test.cpp -o test" \
+    org.label-schema.docker.cmd="docker run -v $(pwd):/media/ jrbeverly/xwindow:privileged g++ myxapp.cpp -o xapp" \
     org.label-schema.vendor="jrbeverly" \
     org.label-schema.schema-version="1.0" \
     \
