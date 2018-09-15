@@ -1,15 +1,5 @@
 # Dockerized X Window System
 
- * [Summary](#summary)
- * [Usage](#usage)
- * [Components](#components)
- * [Build Process](#build-process)
- * [Labels](#labels)
- * [User and Group Mapping](#user-and-group-mapping)
- * [Acknowledgements](#acknowledgements)
-
----
-
 ## Summary
 
 A super small image with [X Window System](https://www.x.org/wiki/) development libraries installed.
@@ -37,15 +27,6 @@ build:
     paths:
       - xapp
 ```
-
-## Image Tags
-
-Build tags available with the image: `jrbeverly/xwindow`.
-
-| Tag | Status | Description |
-| --- | ------ | ----------- |
-| [![Version base][base-badge]][base-link] | [![Image base][base-image-badge]][base-link] | A docker image with libx11 installed, running as docker user (`DUID`). |
-| [![Version privileged][privileged-badge]][privileged-link] | [![Image privileged][privileged-image-badge]][privileged-link] | A docker image with libx11 installed, running with elevated permissions (root). |
 
 ## Components
 
