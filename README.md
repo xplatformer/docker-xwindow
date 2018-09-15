@@ -14,12 +14,7 @@
 
 A super small image with [X Window System](https://www.x.org/wiki/) development libraries installed.
 
-## Image
-
-[![Image][image-badge]][image-link]
-[![License][license-badge]][license-link]
-[![Build][build-badge]][build-link]
-[![Docker][docker-badge]][docker-link]
+**NOTE: This image is marked EOL, and use is discouraged.**
 
 ## Usage
 
