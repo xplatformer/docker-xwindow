@@ -2,7 +2,7 @@
 
 ## Summary
 
-A super small image with [X Window System](https://www.x.org/wiki/) development libraries installed.
+A super small image with [X Window System](https://www.x.org/wiki/) development libraries installed. The project icon is from [cre.ativo mustard, HK from the Noun Project](docs/icon/icon.json)
 
 **NOTE: This image is marked EOL, and use is discouraged.**
 
