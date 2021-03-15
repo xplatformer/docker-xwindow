@@ -1,0 +1,16 @@
+slug: docker-xwindow
+description: A super small image with X Window System development libraries installed.
+project: xplatformer
+namespace: env
+status: archived
+icon: icon.svg
+license:
+  type: MIT
+  content: Jonathan Beverly <jrbeverly>
+  year: 2017
+topics: |-
+  [
+    "docker",
+    "x11",
+    "docker-image"
+  ]
